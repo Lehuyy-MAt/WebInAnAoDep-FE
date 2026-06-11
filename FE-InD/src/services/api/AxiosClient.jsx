@@ -1,19 +1,20 @@
-// src/services/api/AxiosClient.jsx
 import axios from 'axios';
 import { getAuth, clearAuth } from '../../utils/Auth';
 import { toast } from 'react-toastify';
 
 const AxiosClient = axios.create({
-    baseURL: 'http://localhost:8080/api',
+    baseURL: `${import.meta.env.VITE_API_URL}/api`,
     timeout: 10000,
 });
 
 AxiosClient.interceptors.request.use(
     (config) => {
         const auth = getAuth();
+
         if (auth && auth.token) {
             config.headers.Authorization = `Bearer ${auth.token}`;
         }
+
         return config;
     },
     (error) => {
