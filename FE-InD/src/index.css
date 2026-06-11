@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+:root {
+  /* Prevent mobile browsers from auto-scaling text */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* Safari user-select compatibility */
+.user-select-auto {
+  -webkit-user-select: auto;
+  user-select: auto;
+}
+
+.user-select-none {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Prefer standard text-decoration-skip where supported */
+.text-decoration-skip-normal {
+  text-decoration-skip: normal;
+}
+
+/* Safari does not support text-wrap: balance; fallback is normal wrapping */
+.text-wrap-balance {
+  text-wrap: balance;
+}

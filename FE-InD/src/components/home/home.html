@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IN.T – Thời Trang & In Áo Theo Yêu Cầu</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <style>
+    /* ── Home-specific ── */
+    .hero { background: var(--ink); }
+    .hero-eyebrow {
+      font-family: var(--font-mono); font-size: 12px; letter-spacing: .15em;
+      text-transform: uppercase; color: var(--accent);
+      margin-bottom: .75rem;
+    }
+    .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem; }
+    .hero-stats { display: flex; gap: 2rem; margin-top: 2.5rem; }
+    .hero-stat-num { font-family: var(--font-head); font-size: 2rem; color: #fff; }
+    .hero-stat-lbl { font-size: 12px; font-family: var(--font-mono); color: rgba(255,255,255,.5); }
+    .feature-strip {
+      background: var(--accent); color: #fff;
+      padding: 1rem 1.5rem;
+    }
+    .features-inner {
+      max-width: 1340px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 1rem; text-align: center;
+    }
+    .feat-item { display: flex; flex-direction: column; align-items: center; gap: .3rem; }
+    .feat-item i { font-size: 1.4rem; }
+    .feat-item span { font-size: 13px; font-family: var(--font-mono); }
+    .section { padding: 3rem 0; }
+    .promo-banner {
+      background: linear-gradient(135deg, var(--ink) 0%, #1a1a3e 100%);
+      color: #fff; border-radius: 20px; padding: 3rem;
+      display: grid; grid-template-columns: 1fr auto;
+      gap: 2rem; align-items: center; margin: 2rem 0;
+    }
+    .promo-banner h2 { font-family: var(--font-head); font-size: 2.2rem; margin-bottom: .5rem; }
+    .promo-banner p { color: rgba(255,255,255,.7); font-size: 14px; }
+    .promo-badge {
+      background: var(--accent); border-radius: 50%;
+      width: 120px; height: 120px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; flex-shrink: 0;
+    }
+    .promo-badge .pct { font-family: var(--font-head); font-size: 2.5rem; }
+    .promo-badge .lbl { font-size: 11px; font-family: var(--font-mono); }
+    .cat-card {
+      background: var(--card-bg); border: 2px solid var(--border);
+      border-radius: var(--radius); padding: 1.5rem; text-align: center;
+      cursor: pointer; transition: all .2s; display: flex; flex-direction: column; align-items: center; gap: .75rem;
+    }
+    .cat-card:hover { border-color: var(--ink); transform: translateY(-3px); box-shadow: var(--shadow); }
+    .cat-card .ico { font-size: 2rem; }
+    .cat-card .name { font-family: var(--font-mono); font-size: 13px; font-weight: 700; }
+    .cat-card .count { font-size: 11px; color: var(--mid); }
+    .cat-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; }
+    @media(max-width:900px) { .cat-grid { grid-template-columns: repeat(3, 1fr); } .features-inner { grid-template-columns: repeat(2, 1fr); } }
+    @media(max-width:600px) { .cat-grid { grid-template-columns: repeat(2, 1fr); } .promo-banner { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<div id="layout-top"></div>
+<div id="cart-portal"></div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner" style="padding:4rem 1.5rem">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-eyebrow">✦ Streetwear & Custom Print</div>
+        <h1>IN ÁO<br><span>THEO Ý</span><br>BẠN</h1>
+        <p>Thiết kế cá tính, in chất lượng cao. Giao hàng toàn quốc.</p>
+        <div class="hero-cta">
+          <a href="products.html" class="btn btn-accent btn-lg">Mua ngay <i class="fas fa-arrow-right"></i></a>
+          <a href="designs.html" class="btn btn-outline btn-lg" style="color:#fff;border-color:rgba(255,255,255,.35)">Xem thiết kế cộng đồng</a>
+        </div>
+        <div class="hero-stats">
+          <div><div class="hero-stat-num">5K+</div><div class="hero-stat-lbl">Khách hàng</div></div>
+          <div><div class="hero-stat-num">200+</div><div class="hero-stat-lbl">Mẫu in</div></div>
+          <div><div class="hero-stat-num">4.9★</div><div class="hero-stat-lbl">Đánh giá</div></div>
+        </div>
+      </div>
+      <div class="hero-img-wrap" style="max-width:480px">
+        <img src="images/aothun.jpg" alt="IN.T Fashion" style="width:100%;max-height:420px;object-fit:cover">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURE STRIP -->
+<div class="feature-strip">
+  <div class="features-inner">
+    <div class="feat-item"><i class="fas fa-truck"></i><span>Miễn phí vận chuyển từ 500K</span></div>
+    <div class="feat-item"><i class="fas fa-paint-brush"></i><span>In theo thiết kế riêng</span></div>
+    <div class="feat-item"><i class="fas fa-shield-alt"></i><span>Bảo hành chất lượng in</span></div>
+    <div class="feat-item"><i class="fas fa-undo"></i><span>Đổi trả trong 7 ngày</span></div>
+  </div>
+</div>
+
+<div class="page">
+
+  <!-- CATEGORIES -->
+  <section class="section">
+    <div class="sec-heading">
+      <h2>Danh mục</h2>
+      <span class="sub">Khám phá sản phẩm theo loại</span>
+    </div>
+    <div class="cat-grid" id="cat-grid">
+      <!-- loaded from API -->
+      <div class="cat-card" onclick="location.href='products.html'"><div class="ico">👕</div><div class="name">Áo thun</div></div>
+      <div class="cat-card" onclick="location.href='products.html'"><div class="ico">🎽</div><div class="name">Áo tanktop</div></div>
+      <div class="cat-card" onclick="location.href='products.html'"><div class="ico">🧥</div><div class="name">Áo hoodie</div></div>
+      <div class="cat-card" onclick="location.href='products.html'"><div class="ico">🧶</div><div class="name">Áo sweater</div></div>
+      <div class="cat-card" onclick="location.href='products.html'"><div class="ico">✨</div><div class="name">Khác</div></div>
+    </div>
+  </section>
+
+  <!-- FEATURED PRODUCTS -->
+  <section class="section">
+    <div class="sec-heading">
+      <h2>Sản phẩm nổi bật</h2>
+      <span class="sub" id="feat-count"></span>
+    </div>
+    <div class="product-grid cols-4" id="featured-grid">
+      <div class="loading-box" style="grid-column:1/-1"><div class="spinner"></div></div>
+    </div>
+  </section>
+
+  <!-- PROMO BANNER -->
+  <div class="promo-banner">
+    <div>
+      <h2>In áo đồng phục<br>nhóm — Giảm ngay!</h2>
+      <p>Đặt từ 10 cái trở lên – nhận ưu đãi đặc biệt. Liên hệ ngay để được tư vấn.</p>
+      <a href="tel:0399599188" class="btn btn-accent btn-lg" style="margin-top:1rem"><i class="fas fa-phone"></i> Gọi tư vấn</a>
+    </div>
+    <div class="promo-badge">
+      <div class="pct">20%</div>
+      <div class="lbl">GIẢM GIÁ<br>ĐH NHÓM</div>
+    </div>
+  </div>
+
+  <!-- NEW PRODUCTS -->
+  <section class="section">
+    <div class="sec-heading">
+      <h2>Mới nhất</h2>
+      <a href="products.html" class="sub" style="margin-left:auto;color:var(--accent2)">Xem tất cả →</a>
+    </div>
+    <div class="product-grid cols-4" id="new-grid">
+      <div class="loading-box" style="grid-column:1/-1"><div class="spinner"></div></div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section">
+    <div class="sec-heading"><h2>Quy trình đặt hàng</h2></div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:1rem">
+      <div class="card" style="text-align:center">
+        <div style="font-size:2.5rem;margin-bottom:1rem">🎨</div>
+        <h4 style="font-family:var(--font-head);font-size:1.2rem;margin-bottom:.5rem">1. Chọn mẫu áo</h4>
+        <p style="font-size:13px;color:var(--mid)">Duyệt qua catalogue hoặc dùng trình thiết kế online</p>
+      </div>
+      <div class="card" style="text-align:center">
+        <div style="font-size:2.5rem;margin-bottom:1rem">✏️</div>
+        <h4 style="font-family:var(--font-head);font-size:1.2rem;margin-bottom:.5rem">2. Thiết kế</h4>
+        <p style="font-size:13px;color:var(--mid)">Upload hình, thêm text, chọn màu và vị trí in</p>
+      </div>
+      <div class="card" style="text-align:center">
+        <div style="font-size:2.5rem;margin-bottom:1rem">💳</div>
+        <h4 style="font-family:var(--font-head);font-size:1.2rem;margin-bottom:.5rem">3. Thanh toán</h4>
+        <p style="font-size:13px;color:var(--mid)">Chọn size, số lượng, nhập địa chỉ và thanh toán</p>
+      </div>
+      <div class="card" style="text-align:center">
+        <div style="font-size:2.5rem;margin-bottom:1rem">📦</div>
+        <h4 style="font-family:var(--font-head);font-size:1.2rem;margin-bottom:.5rem">4. Nhận hàng</h4>
+        <p style="font-size:13px;color:var(--mid)">In & giao hàng trong 3-5 ngày làm việc</p>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<div id="layout-footer"></div>
+<div id="modal-portal"></div>
+
+<script src="js/api.js"></script>
+<script src="js/layout.js"></script>
+<script>
+// inject layout
+document.getElementById('layout-top').innerHTML = buildNavbar('home');
+document.getElementById('layout-footer').innerHTML = buildFooter();
+document.getElementById('cart-portal').innerHTML = buildCartDrawer();
+document.getElementById('modal-portal').innerHTML = buildAuthModal();
+
+document.getElementById('cart-toggle-btn').addEventListener('click', openCart);
+initSearch();
+refreshCartBadge();
+
+function productCard(p) {
+  const discount = p.originalPrice && p.originalPrice > p.basePrice;
+  return `
+  <a href="product-detail.html?id=${p.id}" class="product-card" style="text-decoration:none">
+    <div class="thumb">
+      <img src="${p.imageUrl || p.previewUrl || 'images/aothun.jpg'}" alt="${p.name}" loading="lazy">
+      ${discount ? `<div class="badge">SALE</div>` : ''}
+    </div>
+    <div class="info">
+      <div class="cat-tag">${p.categoryName || ''}</div>
+      <div class="name">${p.name}</div>
+      <div class="price">${fmt(p.basePrice)}</div>
+      ${discount ? `<div class="orig">${fmt(p.originalPrice)}</div>` : ''}
+      ${p.averageRating ? `<div class="rating">${stars(p.averageRating)} <span style="color:var(--mid);font-size:11px">(${p.reviewCount || 0})</span></div>` : ''}
+      <div class="card-btn"><button onclick="event.preventDefault();quickAdd(${p.id}, '${p.name}')">Thêm vào giỏ</button></div>
+    </div>
+  </a>`;
+}
+
+async function loadHome() {
+  try {
+    const data = await Home.get();
+    // categories
+    if (data.categories?.length) {
+      const icons = ['👕','🎽','🧥','🧶','👔','✨'];
+      document.getElementById('cat-grid').innerHTML = data.categories.map((c, i) => `
+        <div class="cat-card" onclick="location.href='products.html?categoryId=${c.id}'">
+          <div class="ico">${icons[i] || '🏷️'}</div>
+          <div class="name">${c.name}</div>
+          <div class="count">${c.productCount ?? ''}</div>
+        </div>`).join('');
+    }
+    // featured
+    const fg = document.getElementById('featured-grid');
+    if (data.featuredProducts?.length) {
+      document.getElementById('feat-count').textContent = `${data.featuredProducts.length} sản phẩm`;
+      fg.innerHTML = data.featuredProducts.map(productCard).join('');
+    } else {
+      fg.innerHTML = `<div class="empty-state" style="grid-column:1/-1"><div class="ico">📦</div><p>Chưa có sản phẩm</p></div>`;
+    }
+    // new
+    const ng = document.getElementById('new-grid');
+    if (data.newProducts?.length) {
+      ng.innerHTML = data.newProducts.map(productCard).join('');
+    } else {
+      ng.innerHTML = `<div class="empty-state" style="grid-column:1/-1"><div class="ico">🆕</div><p>Chưa có sản phẩm mới</p></div>`;
+    }
+  } catch(e) {
+    // fallback to search API
+    try {
+      const res = await Products.search({ page: 0, size: 8, sortBy: 'createdAt', sortDir: 'desc' });
+      const items = res.content || res.items || [];
+      document.getElementById('featured-grid').innerHTML = items.slice(0,4).map(productCard).join('') || '<div style="grid-column:1/-1;text-align:center;padding:2rem;color:var(--mid)">Không thể kết nối server</div>';
+      document.getElementById('new-grid').innerHTML = items.slice(4,8).map(productCard).join('') || '';
+    } catch { 
+      document.getElementById('featured-grid').innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:2rem;color:var(--mid)">Không thể kết nối server. Vui lòng chạy backend tại cổng 8080.</div>';
+      document.getElementById('new-grid').innerHTML = '';
+    }
+  }
+}
+
+async function quickAdd(productId, name) {
+  const u = Auth.current();
+  if (!u) { openModal('modal-auth'); return; }
+  try {
+    const detail = await Products.detail(productId);
+    const sizes = detail.availableSizes?.split(',') || ['M'];
+    const colors = detail.availableColors?.split(',') || ['Đen'];
+    await Cart.add(u.id, { productId, size: sizes[0].trim(), color: colors[0].trim(), quantity: 1, unitPrice: detail.basePrice });
+    toast(`Đã thêm "${name}" vào giỏ 🛒`);
+    refreshCartBadge();
+  } catch(e) { toast(e.message || 'Lỗi thêm vào giỏ', 'error'); }
+}
+
+loadHome();
+</script>
+</body>
+</html>
