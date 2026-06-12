@@ -56,10 +56,6 @@ const Home = () => {
   const fetchProducts = async () => {
     setLoading(true);
     try {
-      // Sử dụng API lấy sản phẩm, truyền categoryId nếu có lọc
-      const fetchProducts = async () => {
-    setLoading(true);
-    try {
       // Sử dụng API công khai (không cần đăng nhập) để lấy sản phẩm
       const response = await ProductApi.search({
         page: 0,
@@ -67,13 +63,6 @@ const Home = () => {
         keyword: searchKeyword,
         categoryId: selectedCategory
       });
-      setProducts(response.items || []);
-    } catch (error) {
-      console.error("Failed to fetch products");
-    } finally {
-      setLoading(false);
-    }
-  };
       setProducts(response.items || []);
     } catch (error) {
       console.error("Failed to fetch products");
