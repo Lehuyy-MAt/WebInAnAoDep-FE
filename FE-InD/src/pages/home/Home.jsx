@@ -57,13 +57,23 @@ const Home = () => {
     setLoading(true);
     try {
       // Sử dụng API lấy sản phẩm, truyền categoryId nếu có lọc
-      const response = await ProductApi.getAllForAdmin({ 
-        page: 0, 
-        size: 12, 
+      const fetchProducts = async () => {
+    setLoading(true);
+    try {
+      // Sử dụng API công khai (không cần đăng nhập) để lấy sản phẩm
+      const response = await ProductApi.search({
+        page: 0,
+        size: 12,
         keyword: searchKeyword,
-        isActive: true,
-        categoryId: selectedCategory 
+        categoryId: selectedCategory
       });
+      setProducts(response.items || []);
+    } catch (error) {
+      console.error("Failed to fetch products");
+    } finally {
+      setLoading(false);
+    }
+  };
       setProducts(response.items || []);
     } catch (error) {
       console.error("Failed to fetch products");

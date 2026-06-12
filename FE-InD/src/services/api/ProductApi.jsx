@@ -2,6 +2,26 @@
 import AxiosClient from "./AxiosClient";
 
 const ProductApi = {
+  // Lấy danh sách công khai (cho trang Home/Products) - KHÔNG cần đăng nhập
+  search: (params = {}) => {
+    const {
+      page = 0,
+      size = 12,
+      keyword = '',
+      categoryId = null,
+      minPrice = null,
+      maxPrice = null,
+      sortBy = 'createdAt',
+      sortDir = 'desc'
+    } = params;
+    let url = `/products/search?page=${page}&size=${size}&sortBy=${sortBy}&sortDir=${sortDir}`;
+    if (keyword) url += `&keyword=${encodeURIComponent(keyword)}`;
+    if (categoryId) url += `&categoryId=${categoryId}`;
+    if (minPrice !== null && minPrice !== undefined && minPrice !== '') url += `&minPrice=${minPrice}`;
+    if (maxPrice !== null && maxPrice !== undefined && maxPrice !== '') url += `&maxPrice=${maxPrice}`;
+    return AxiosClient.get(url);
+  },
+
   // Lấy danh sách cho admin
   getAllForAdmin: (params) => {
     const { page = 0, size = 10, keyword = '', isActive = null, categoryId = null } = params;
