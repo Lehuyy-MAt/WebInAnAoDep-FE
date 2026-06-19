@@ -132,8 +132,16 @@ const OrderDetail = () => {
           <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-5">
             <h3 className="font-semibold text-sm mb-4 text-gray-700">Tóm tắt đơn hàng</h3>
             <div className="space-y-2 text-sm">
-              <div className="flex justify-between"><span className="text-gray-500">Tạm tính</span><span>{fmt(order.totalAmount)}</span></div>
-              <div className="flex justify-between"><span className="text-gray-500">Phí vận chuyển</span><span className="text-green-600">Miễn phí</span></div>
+              <div className="flex justify-between">
+                <span className="text-gray-500">Tạm tính</span>
+                <span>{fmt(order.subtotal !== undefined && order.subtotal !== null ? order.subtotal : (order.totalAmount - (order.shippingFee || 0)))}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-gray-500">Phí vận chuyển</span>
+                <span className={order.shippingFee > 0 ? "text-gray-800" : "text-green-600 font-medium"}>
+                  {order.shippingFee > 0 ? fmt(order.shippingFee) : "Miễn phí"}
+                </span>
+              </div>
               <div className="flex justify-between font-bold text-base border-t border-gray-100 pt-3 mt-3">
                 <span>Tổng cộng</span><span className="text-indigo-600">{fmt(order.totalAmount)}</span>
               </div>

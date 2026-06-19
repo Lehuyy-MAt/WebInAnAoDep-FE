@@ -51,9 +51,27 @@ const CheckoutForm = ({ cartItems, total, onPlaceOrder, user }) => {
 
   const handleChange = (e) => setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
 
+  const isHanoiCity = (cityStr) => {
+    if (!cityStr) return false;
+    const cleaned = cityStr
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[đĐ]/g, 'd')
+      .trim();
+    return cleaned.includes('ha noi') || cleaned.includes('hanoi');
+  };
+
+  const shippingFee = delivery === 'nhan' ? 0 : (isHanoiCity(form.city) ? 0 : 20000);
+  const grandTotal = total + shippingFee;
+
   const handleSubmit = () => {
     if (!form.name || !form.phone || !form.email) {
       alert('Vui lòng điền đầy đủ họ tên, email và số điện thoại!');
+      return;
+    }
+    if (delivery === 'giao' && (!form.city.trim() || !form.district.trim() || !form.address.trim())) {
+      alert('Vui lòng điền đầy đủ địa chỉ giao hàng (Tỉnh/TP, Quận/Huyện, Địa chỉ cụ thể)!');
       return;
     }
     onPlaceOrder({ form, delivery, payment });
@@ -158,10 +176,13 @@ const CheckoutForm = ({ cartItems, total, onPlaceOrder, user }) => {
           <span className="text-gray-500">Tạm tính</span><span className="font-semibold">{fmt(total)}</span>
         </div>
         <div className="flex justify-between text-sm mb-3">
-          <span className="text-gray-500">Phí vận chuyển</span><span className="text-green-600 font-medium">Miễn phí</span>
+          <span className="text-gray-500">Phí vận chuyển</span>
+          <span className={shippingFee === 0 ? "text-green-600 font-medium" : "text-gray-800 font-medium"}>
+            {shippingFee === 0 ? 'Miễn phí' : fmt(shippingFee)}
+          </span>
         </div>
         <div className="flex justify-between font-bold text-base border-t border-gray-100 pt-3">
-          <span>Tổng cộng</span><span className="text-indigo-600 text-lg">{fmt(total)}</span>
+          <span>Tổng cộng</span><span className="text-indigo-600 text-lg">{fmt(grandTotal)}</span>
         </div>
       </div>
 
@@ -426,7 +447,7 @@ const Checkout = () => {
   return (
     <PageLayout>
       <h1 className="text-xl font-bold mb-6">Thanh toán</h1>
-      {step === 'qr' && <QRStep total={total} orderInfo={orderInfo} onConfirm={handleConfirmPayment} onBack={() => setStep('form')} />}
+      {step === 'qr' && <QRStep total={orderInfo?.total || total} orderInfo={orderInfo} onConfirm={handleConfirmPayment} onBack={() => setStep('form')} />}
       {step === 'success' && <SuccessStep navigate={navigate} orderId={orderInfo?.id} />}
       {step === 'form' && <CheckoutForm cartItems={cartItems} total={total} onPlaceOrder={handlePlaceOrder} user={user} />}
     </PageLayout>
