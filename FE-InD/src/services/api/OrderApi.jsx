@@ -41,6 +41,20 @@ const OrderApi = {
   checkPaymentStatus: (orderId) => {
     return AxiosClient.get(`/orders/${orderId}/payment-status`);
   },
+
+  // 👉 THÊM HÀM NÀY - Xuất Excel
+  exportExcel: (status, keyword) => {
+    console.log("📡 Calling GET /orders/export/excel", { status, keyword });
+    let url = '/orders/export/excel';
+    const params = new URLSearchParams();
+    if (status) params.append('status', status);
+    if (keyword) params.append('keyword', keyword);
+    if (params.toString()) url += '?' + params.toString();
+    
+    return AxiosClient.get(url, {
+      responseType: 'blob'  // Quan trọng: nhận file blob
+    });
+  },
 };
 
 export default OrderApi;

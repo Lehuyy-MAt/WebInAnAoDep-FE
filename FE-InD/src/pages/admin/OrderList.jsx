@@ -4,7 +4,7 @@ import {
   Table, Button, Select, Space, message, Input,
   Card, Tag, Modal, Typography, Tooltip
 } from 'antd';
-import { EyeOutlined, ReloadOutlined, SearchOutlined } from '@ant-design/icons';
+import { EyeOutlined, ReloadOutlined, SearchOutlined, DownloadOutlined } from '@ant-design/icons';
 import OrderApi from '../../services/api/OrderApi';
 
 const { Option } = Select;
@@ -92,6 +92,33 @@ const OrderList = () => {
     }
   };
 
+  // 👉 HÀM XUẤT EXCEL
+  const handleExportExcel = async () => {
+    try {
+      setLoading(true);
+      const response = await OrderApi.exportExcel(filters.status, filters.keyword);
+      
+      const blob = new Blob([response], { 
+        type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' 
+      });
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `don_hang_${new Date().toISOString().slice(0,10)}.xlsx`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+      
+      message.success('Xuất Excel thành công!');
+    } catch (error) {
+      console.error("Lỗi:", error);
+      message.error('Xuất Excel thất bại');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const columns = [
     {
       title: 'Mã đơn',
@@ -159,7 +186,24 @@ const OrderList = () => {
   ];
 
   return (
-    <Card title="Quản lý đơn hàng" extra={<Button icon={<ReloadOutlined />} onClick={fetchOrders}>Làm mới</Button>}>
+    <Card 
+      title="Quản lý đơn hàng" 
+      extra={
+        <Space>
+          <Button 
+            icon={<DownloadOutlined />} 
+            onClick={handleExportExcel}
+            type="primary"
+            ghost
+          >
+            Xuất Excel
+          </Button>
+          <Button icon={<ReloadOutlined />} onClick={fetchOrders}>
+            Làm mới
+          </Button>
+        </Space>
+      }
+    >
       <Space style={{ marginBottom: 16 }} wrap>
         <Input
           placeholder="Mã đơn hoặc tên khách..."
