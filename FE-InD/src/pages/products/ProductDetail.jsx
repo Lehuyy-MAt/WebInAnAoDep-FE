@@ -4,7 +4,9 @@ import { ProductService } from '../../services/api';
 import { useCart } from '../../context/CartContext';
 import { useAuth } from '../../context/AuthContext';
 
-import logoInT from '../../assets/images/LOGOO.png'; // Giữ lại logo
+import logoInT from '../../assets/images/LOGOO.png'; 
+// 1. Thêm import ảnh bảng size áo (đảm bảo bạn có file này trong thư mục)
+import bangsizeao from '../../assets/images/bangsizeao.png'; 
 
 const ProductDetail = () => {
   const [searchParams] = useSearchParams();
@@ -21,8 +23,8 @@ const ProductDetail = () => {
   const [gender, setGender] = useState('Nam');
   const [uploadedText, setUploadedText] = useState('Anh yêu em <3');
   const [imageFile, setImageFile] = useState(null);
-  const [searchTerm, setSearchTerm] = useState(''); // This is for the header search, not directly related to product images
-  const [activeImage, setActiveImage] = useState(undefined); // Không dùng placeholder
+  const [searchTerm, setSearchTerm] = useState('');
+  const [activeImage, setActiveImage] = useState(undefined);
 
   const fmt = (price) => new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price).replace('₫', 'đ');
 
@@ -39,7 +41,7 @@ const ProductDetail = () => {
     const images = product.images || [];
     const firstUrl = product.imageUrl || product.defaultImageUrl || product.image;
     const list = images.map((img) => img.imageUrl).filter(Boolean);
-    if (firstUrl && !list.includes(firstUrl)) list.unshift(firstUrl); // Đảm bảo ảnh chính luôn ở đầu nếu chưa có
+    if (firstUrl && !list.includes(firstUrl)) list.unshift(firstUrl);
     return list;
   }, [product]);
 
@@ -53,8 +55,8 @@ const ProductDetail = () => {
     setLoading(true);
     ProductService.detail(id)
       .then((res) => {
-        setProduct(res); // Cập nhật dữ liệu sản phẩm
-        setActiveImage(res?.imageUrl || res?.defaultImageUrl || res?.image || undefined); // Cập nhật ảnh hiển thị, không dùng placeholder
+        setProduct(res);
+        setActiveImage(res?.imageUrl || res?.defaultImageUrl || res?.image || undefined);
         setSelectedSize(res?.availableSizes?.split(',')[0]?.trim() || 'XS');
         setSelectedColor(res?.availableColors?.split(',')[0]?.trim() || 'white');
       })
@@ -171,12 +173,11 @@ const ProductDetail = () => {
       <nav className="bg-white border-b border-slate-100 hidden sm:block">
         <div className="max-w-7xl mx-auto px-6 flex items-center gap-2 text-[13px] font-medium h-11">
           <div onClick={() => navigate('/')} className="bg-[#ff5a36] text-white px-5 h-full flex items-center gap-2 cursor-pointer font-semibold rounded-t-sm">
-            <span>🔶</span> Shop cá nhân hóa <span className="text-[8px]">▼</span> {/* Giữ lại link này, nhưng sẽ chuyển hướng về Home */}
+            <span>🔶</span> Shop cá nhân hóa <span className="text-[8px]">▼</span>
           </div>
           <div className="flex gap-8 text-slate-500 pl-6">
             <Link to="/" className="hover:text-[#4f46e5] h-11 flex items-center">Trang chủ</Link>
-            {/* <Link to="/products" className="text-[#4f46e5] font-semibold border-b-2 border-[#4f46e5] h-11 flex items-center">Sản phẩm</Link> */} {/* Bỏ link này */}
-            <Link to="/" className="hover:text-[#4f46e5] h-11 flex items-center">Sản phẩm</Link> {/* Chuyển về Home */}
+            <Link to="/" className="hover:text-[#4f46e5] h-11 flex items-center">Sản phẩm</Link>
           </div>
         </div>
       </nav>
@@ -185,8 +186,6 @@ const ProductDetail = () => {
       <div className="bg-slate-50 border-b border-slate-100 py-3 text-xs text-slate-500">
         <div className="max-w-6xl mx-auto px-6 flex items-center gap-2">
           <Link to="/" className="hover:text-slate-800">Trang chủ</Link>
-          {/* <span>&gt;</span>
-          <Link to="/products" className="hover:text-slate-800">Sản phẩm</Link> */} {/* Bỏ breadcrumb này */}
           <span>&gt;</span>
           <span className="text-slate-400">{product.categoryName || 'Danh mục'}</span>
         </div>
@@ -224,7 +223,7 @@ const ProductDetail = () => {
                   className={`aspect-square rounded-lg overflow-hidden border transition ${activeImage === imgUrl ? 'border-indigo-500' : 'border-slate-200'} `}
                 >
                   <img
-                    src={imgUrl || undefined} // Không dùng placeholder
+                    src={imgUrl || undefined}
                     alt={`${product.name} ${index + 1}`}
                     className="w-full h-full object-cover"
                   />
@@ -266,7 +265,6 @@ const ProductDetail = () => {
                 >
                   Thêm vào giỏ
                 </button>
-                {/* nút quay về trang chủ đã được di chuyển lên trên tiêu đề */}
               </div>
             </div>
 
@@ -435,53 +433,22 @@ const ProductDetail = () => {
           <div className="bg-[#fffdf9] border border-amber-100 rounded-xl p-6 text-center space-y-4">
             <h3 className="text-xl font-extrabold text-amber-900 tracking-tight">BẢNG SIZE ÁO THUN COTTON</h3>
             <p className="text-xs text-amber-700/80">Vui lòng đối chiếu Chiều cao & Cân nặng để chọn kích cỡ chính xác nhất</p>
-            <div className="overflow-x-auto">
-              <table className="w-full text-center border-collapse text-xs mt-2 bg-white rounded-lg overflow-hidden shadow-sm">
-                <thead>
-                  <tr className="bg-amber-500 text-white font-bold">
-                    <th className="p-2 border border-amber-600">Phân loại</th>
-                    <th className="p-2 border border-amber-600">Size Áo</th>
-                    <th className="p-2 border border-amber-600">Ngang Áo (cm)</th>
-                    <th className="p-2 border border-amber-600">Dài Áo (cm)</th>
-                    <th className="p-2 border border-amber-600">Cân Nặng (kg)</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr className="bg-amber-50/30">
-                    <td rowSpan="2" className="p-2 border border-slate-100 font-bold bg-slate-50 text-slate-600">Trẻ Em</td>
-                    <td className="p-2 border border-slate-100 font-semibold text-slate-700">100</td>
-                    <td className="p-2 border border-slate-100">31</td>
-                    <td className="p-2 border border-slate-100">43</td>
-                    <td className="p-2 border border-slate-100">10 - 14</td>
-                  </tr>
-                  <tr className="bg-amber-50/30">
-                    <td className="p-2 border border-slate-100 font-semibold text-slate-700">150</td>
-                    <td className="p-2 border border-slate-100">43</td>
-                    <td className="p-2 border border-slate-100">57</td>
-                    <td className="p-2 border border-slate-100">35 - 39</td>
-                  </tr>
-                  <tr className="bg-blue-50/20">
-                    <td rowSpan="3" className="p-2 border border-slate-100 font-bold bg-slate-50 text-slate-600">Người Lớn</td>
-                    <td className="p-2 border border-slate-100 font-semibold text-slate-700">XS</td>
-                    <td className="p-2 border border-slate-100">44</td>
-                    <td className="p-2 border border-slate-100">64</td>
-                    <td className="p-2 border border-slate-100">40 - 50</td>
-                  </tr>
-                  <tr className="bg-blue-50/20">
-                    <td className="p-2 border border-slate-100 font-semibold text-slate-700">L</td>
-                    <td className="p-2 border border-slate-100">53</td>
-                    <td className="p-2 border border-slate-100">73</td>
-                    <td className="p-2 border border-slate-100">70 - 80</td>
-                  </tr>
-                  <tr className="bg-blue-50/20">
-                    <td className="p-2 border border-slate-100 font-semibold text-slate-700">5XL</td>
-                    <td className="p-2 border border-slate-100">68</td>
-                    <td className="p-2 border border-slate-100">83</td>
-                    <td className="p-2 border border-slate-100">130 - 140</td>
-                  </tr>
-                </tbody>  
-              </table>
+            
+            {/* 2. CHÈN ẢNH BẢNG SIZE VÀO ĐÂY */}
+            <div className="w-full flex justify-center mt-4">
+              <img 
+                src={bangsizeao} 
+                alt="Bảng size áo thun cotton" 
+                className="max-w-full h-auto rounded-lg shadow-sm border border-slate-100"
+              />
             </div>
+
+            {/* Đã tạm ẩn bảng HTML cũ đi, bạn có thể xóa hẳn nếu muốn */}
+            {/* <div className="overflow-x-auto">
+              <table className="w-full text-center border-collapse text-xs mt-2 bg-white rounded-lg overflow-hidden shadow-sm">
+                ... (bảng cũ) ...
+              </table>
+            </div> */}
           </div>
 
           <div className="space-y-4 pt-2">
