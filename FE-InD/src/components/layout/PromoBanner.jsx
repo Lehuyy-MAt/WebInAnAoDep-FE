@@ -1,5 +1,5 @@
 const PromoBanner = ({
-  text = 'Giải Pháp Tối Giản Cho Tủ Đồ Khó Chơi: Mặc Đẹp Mỗi Ngày Không Cần Kỳ Nghệ!',
+  text = 'Giải Pháp Tối Giản Cho Tủ Đồ Khó Chọn: Mặc Đẹp Mỗi Ngày Không Cần Suy Nghĩ!',
   phone = '0399599188',
 }) => (
   <div className="bg-gray-800 text-white text-center text-xs py-2 px-4">
