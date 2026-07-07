@@ -6,7 +6,7 @@ import { useAuth } from '../../context/AuthContext';
 
 import logoInT from '../../assets/images/LOGOO.png'; 
 // 1. Thêm import ảnh bảng size áo (đảm bảo bạn có file này trong thư mục)
-import bangsizeao from '../../assets/images/bangsizeao.png'; 
+import bangsizeao from '../../assets/images/bangsizeao.jpg'; 
 
 const ProductDetail = () => {
   const [searchParams] = useSearchParams();
