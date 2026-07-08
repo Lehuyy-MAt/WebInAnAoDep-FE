@@ -19,6 +19,7 @@ import ProductForm from "../pages/admin/ProductForm.jsx";
 import UserList from '../pages/admin/UserList';
 import CategoryList from '../pages/admin/CategoryList.jsx';
 import OrderList from '../pages/admin/OrderList';
+import AdminReviewList from '../pages/admin/ReviewList.jsx';
 
 
 
@@ -69,6 +70,7 @@ const AppRouter = () => {
         <Route path="categories" element={<CategoryList />} />
         <Route path="users" element={<UserList />} />
         <Route path="orders" element={<OrderList />} />
+        <Route path="reviews" element={<AdminReviewList />} />
 
 
       </Route>

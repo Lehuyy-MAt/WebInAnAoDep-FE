@@ -7,7 +7,8 @@ import {
   AppstoreOutlined, 
   ShoppingCartOutlined, 
   UserOutlined, 
-  SettingOutlined 
+  SettingOutlined,
+  StarOutlined
 } from '@ant-design/icons';
 import { useNavigate, useLocation } from 'react-router-dom';
 
@@ -42,6 +43,11 @@ const Sidebar = ({ collapsed }) => {
       key: '/admin/orders',
       icon: <ShoppingCartOutlined />,
       label: 'Quản lý đơn hàng',
+    },
+    {
+      key: '/admin/reviews',
+      icon: <StarOutlined />,
+      label: 'Quản lý đánh giá',
     },
     {
       key: '/admin/users',

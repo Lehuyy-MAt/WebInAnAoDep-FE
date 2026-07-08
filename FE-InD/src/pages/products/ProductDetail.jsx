@@ -3,6 +3,7 @@ import { useSearchParams, useNavigate, Link } from 'react-router-dom';
 import { ProductService } from '../../services/api';
 import { useCart } from '../../context/CartContext';
 import { useAuth } from '../../context/AuthContext';
+import ReviewList from '../../components/Review/ReviewList'; // 👈 THÊM
 
 import logoInT from '../../assets/images/LOGOO.png'; 
 // 1. Thêm import ảnh bảng size áo (đảm bảo bạn có file này trong thư mục)
@@ -467,6 +468,9 @@ const ProductDetail = () => {
             </div>
           </div>
         </section>
+
+        {/* ĐÁNH GIÁ SẢN PHẨM */}
+        <ReviewList productId={product.id} productName={product.name} />
       </main>
 
       {/* FOOTER */}
